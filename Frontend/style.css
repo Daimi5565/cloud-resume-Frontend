@@ -1,0 +1,43 @@
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  margin: 20px;
+  padding: 0;
+}
+
+h1, h2, h3 {
+  color: #333;
+}
+
+.section {
+  margin-bottom: 20px;
+}
+
+.section h2 {
+  margin-bottom: 10px;
+  border-bottom: 2px solid #333;
+  padding-bottom: 5px;
+}
+
+.section .content {
+  margin-left: 20px;
+}
+
+.section .content p {
+  margin: 10px 0;
+}
+
+.skills ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.skills ul li {
+  margin-bottom: 5px;
+}
+
+footer {
+  margin-top: 20px;
+  font-size: 0.9em;
+  color: #555;
+}
