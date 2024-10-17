@@ -1,33 +1,26 @@
-name: CI/CD Frontend
+name: CI/CD for Frontend
 
 on:
   push:
     branches:
-      - main
+      - main  # Change to your default branch if different
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v2
 
-    # Azure Logout to clear cached credentials, just in case
-    - name: Azure Logout (to clear cache)
-      run: az logout || true
-
-    # Azure Login using the Service Principal credentials from secrets
-    - name: Azure Login
-      uses: azure/login@v1
+    - name: Login to Azure
+      uses: Azure/login@v1
       with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
+        creds: ${{ secrets.AZURE_CREDENTIALS }}  # Set this secret in GitHub
 
-    # Debug step to ensure secrets are correctly passed
-    - name: Debug environment variables
-      run: printenv | grep 'AZURE'
-
-    # Upload the frontend to Azure Blob Storage
     - name: Deploy to Azure Storage
       run: |
-        az storage blob upload-batch -d '$web' -s './Frontend' --account-name ${{ secrets.AZURE_STORAGE_ACCOUNT_NAME }} --auth-mode login
+        az storage blob upload-batch \
+          --account-name saadstoragee  \
+          --destination '$web' \
+          --source '.'  # Use current directory as source
